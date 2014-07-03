@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Operations";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-sm-2">
+        @using (Html.BeginForm("CheckBalance", "Transactions", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-default">Check balance</button>
+        }
+    </div>
+    <div class="col-sm-2">
+        @using (Html.BeginForm("WithdrawMoney", "Transactions", FormMethod.Get))
+        {
+            <button type="submit" class="btn btn-default">Take cash</button>
+        }
+    </div>
+    <div class="col-sm-2">
+        @using (Html.BeginForm("LogOff", "Card", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-danger">Exit</button>
+        }
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@model DataArtATM.ViewModels.WithdrawMoneyViewModel
+
+@{
+    ViewBag.Title = "WithdrawMoney";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    @using (Html.BeginForm("WithdrawMoney", "Transactions", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.LabelFor(x => x.Amount, new { @class = "col-sm-2 control-label input-lg" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(x => x.Amount, new { @class = "form-control input-lg", @readonly = "readonly" })
+                @Html.ValidationMessageFor(x => x.Amount)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10">
+                @{ Html.RenderPartial("Partial/KeyboardPartial"); }
+            </div>
+        </div>
+    }
+    <div class="form-group">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">
+            @using (Html.BeginForm("LogOff", "Card", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-danger exit-button">Exit</button>
+            }
+        </div>
+    </div>
+
+</div>
+@section scripts
+{
+   <script type="text/javascript">
+    $(function () {
+        setKeyBoard('#Amount');
+    })
+</script>
+}

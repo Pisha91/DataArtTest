@@ -1,0 +1,33 @@
+﻿@model DataArtATM.ViewModels.ValidateCardViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    @using (Html.BeginForm("ValidateCard", "Card", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.LabelFor(x => x.Number, new { @class = "col-sm-2 control-label input-lg" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(x => x.Number, new { @class = "form-control input-lg", @readonly = "readonly" })
+                @Html.ValidationMessageFor(x => x.Number)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10">
+                @{ Html.RenderPartial("Partial/KeyboardPartial"); }
+            </div>
+        </div>
+
+    }
+</div>
+@section scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            setCardKeyBoard('#Number');
+        })
+    </script>
+}

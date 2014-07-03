@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "CardBlocked";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Sorry, to match requests with wrong PIN code. Your card is blocked.</h2>
+<div class="row">
+    @using (Html.BeginForm("LogOff", "Card", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-danger exit-button">Exit</button>
+    }
+</div>
+

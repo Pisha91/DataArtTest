@@ -1,0 +1,45 @@
+﻿@model DataArtATM.ViewModels.ReportViewModel
+
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="row">
+        @Html.LabelFor(x => x.CardNumber, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <span class="">@Model.CardNumber.ToString("0000-0000-0000-0000") </span>
+        </div>
+    </div>
+    <div class="row">
+        @Html.LabelFor(x => x.Amount, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <span class="">@Model.Amount.ToString("F") </span>
+        </div>
+    </div>
+    <div class="row">
+        @Html.LabelFor(x => x.Balance, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <span class="">@Model.Balance.ToString("F") </span>
+        </div>
+    </div>
+    <div class="row">
+        @Html.LabelFor(x => x.Date, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <span class="">@Model.Date.ToString("G") </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2">
+            <a href="@Url.Action("WithdrawMoney")" class="btn btn-default">Back</a>
+        </div>
+        <div class="col-sm-2">
+            @using (Html.BeginForm("LogOff", "Card", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-danger">Exit</button>
+            }
+        </div>
+    </div>
+</div>
